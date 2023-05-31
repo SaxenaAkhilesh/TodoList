@@ -7,7 +7,7 @@ import Authenticate from "../middleware/authentication.js";
 
 
 import   {SignUp,Login,Forget,ForgetPassword} from "../controller/Signupcontoller.js";
-import {DataAdd} from "../controller/Datacontroller.js"
+import {DataAdd,DeleteItems} from "../controller/Datacontroller.js"
 
 
 // router.use(cookieParser());
@@ -32,6 +32,7 @@ router.get("/userisvalid",Authenticate,(req,res)=>{
 
 // data add 
 router.post("/dataadd",DataAdd)
+router.post("/deleteitems",DeleteItems)
 
 
 export default router;

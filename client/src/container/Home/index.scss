@@ -55,7 +55,6 @@
     align-items: center;
 }
 .bottomSection .containers {
-    width: 25rem;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -64,6 +63,8 @@
 .bottomSection .containers .point {
     display: flex;
     flex-direction: row;
+    width: 31rem;
+    margin-left: 9.6%;
 }
 .bottomSection .containers .point .point__title {
     border: none;
@@ -91,6 +92,33 @@
     padding: .5% 2%;
     width: 15rem;
 }
+.bottomSection .containers .point .itemPoint {
+    display: flex;
+    flex-direction: row;
+    margin-left: 4%;
+    width: 5rem;
+    gap: 1rem;
+}
+.bottomSection .containers .point .itemPoint .update {
+    border: 1.6px solid black;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    line-height: 0;
+    padding: 0 4%;
+    max-height: 1.5rem;
+    cursor: pointer;
+    transition: 250ms ease-in-out;
+    &:hover{
+        color: white;
+        background: #5bb6ff;
+        border: 1.6px solid #5bb6ff;
+    }
+}
+.bottomSection .containers .point .itemPoint .update svg{
+    font-size: 1rem;
+}
+
 .bottomSection .header {
     width: 25rem;
     margin: 2% 0;

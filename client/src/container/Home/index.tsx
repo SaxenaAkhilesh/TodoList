@@ -2,12 +2,14 @@ import react, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import "./index.scss"
 import AddTodoList from "./AddTodoList";
+import { AiOutlineEdit, AiFillDelete } from "react-icons/ai";
 
 const Home = () => {
   const navigate = useNavigate()
   const [toggle, setToggle] = useState(false);
   const [id, setId] = useState()
   const [list, setList] = useState([])
+  const [editToggle, setEditToggle] = useState(false)
   const [currentPages, setCurrentPages] = useState(1);
 
   // pagination 
@@ -17,6 +19,8 @@ const Home = () => {
   const records = list.slice(firstIndex, lastIndex)
   const nPages = Math.ceil(list.length / recordPages)
   const numbers = [...Array(nPages + 1).keys()].slice(1)
+  console.log(records);
+
 
   function prePage() {
     if (currentPages !== 1) {
@@ -38,6 +42,34 @@ const Home = () => {
   // add list 
   const addList = () => {
     setToggle(!toggle)
+  }
+
+
+  // deleteitems 
+  const deleteData = async (listid: any) => {
+    const listId = listid._id;
+    if (listId) {
+      const res = await fetch("/api/deleteitems", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          listId,id
+        })
+      })
+      const response=await res.json()
+      if(response.status===201){
+        setList(response.delteItems.list);
+                
+      }
+    }
+  }
+
+
+  // update items
+  const updateData = (id: any) => {
+    setEditToggle(!editToggle)
   }
 
 
@@ -92,13 +124,16 @@ const Home = () => {
                   <div className="point">
                     <div className="point__title">{elem.title}</div>
                     <div className="point__content">{elem.content}</div>
-                    <div className="data">{elem.complete}</div>
-                    <div className="postion"><input type="checkbox" name="checkbox" id="checkbox" value={elem.complete} />{elem.complete}</div>
+                    {
+                      <div className="itemPoint">
+                        <div className="update" onClick={() => { updateData(elem) }}><AiOutlineEdit /></div>
+                        <div className="update" onClick={() => { deleteData(elem) }} ><AiFillDelete /></div>
+                      </div>
+                    }
                   </div>
                 )
               })
             )
-
             }
           </div>
         </div>
