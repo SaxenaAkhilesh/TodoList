@@ -50,31 +50,90 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    height: 18rem;
     flex-direction: column;
+    align-items: center;
 }
 .bottomSection .containers {
-    width: 20rem;
+    width: 25rem;
     display: flex;
     flex-direction: column;
     text-align: center;
+    gap: 2rem;
 }
 .bottomSection .containers .point {
     display: flex;
     flex-direction: row;
 }
 .bottomSection .containers .point .point__title {
-    font-family: Poppins;
-    font-size: 1.1rem;
-    font-weight: 700;
-    padding-left: 3%;
-    text-transform: capitalize;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 0 #000;
+    color: #222;
+    font-family: Roboto;
+    font-size: 1rem;
+    letter-spacing: .5px;
+    line-height: 1.6;
+    outline: none;
+    padding: .5% 2%;
+    width: 10rem;
 }
 .bottomSection .containers .point .point__content {
-    font-family: Poppins;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 0 #000;
+    color: #222;
+    font-family: Roboto;
     font-size: 1rem;
-    font-weight: 400;
-    padding-left: 3%;
-    text-transform: capitalize;
+    letter-spacing: .5px;
+    line-height: 1.6;
+    outline: none;
+    padding: .5% 2%;
+    width: 15rem;
+}
+.bottomSection .header {
+    width: 25rem;
+    margin: 2% 0;
+}
+.bottomSection .header .point {
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 0 2px 0 black;
+    border-radius: 3px;
+}
+.bottomSection .header .point .point_titles {
+    border: none;
+    border-radius: 3px 0px 0px 3px;
+    color: #fff;
+    font-family: Roboto;
+    font-size: 1rem;
+    line-height: 1.6;
+    outline: none;
+    padding: .5% 2%;
+    width: 10rem;
+    text-align: center;
+    background: #5bb6ff;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-right: 1px solid black;
+}
+.bottomSection .header .point .point_contents {
+    border: none;
+    border-radius: 0px 3px 3px 0px;
+    color: #fff;
+    font-family: Roboto;
+    font-size: 1rem;
+    letter-spacing: .5px;
+    line-height: 1.6;
+    outline: none;
+    padding: .5% 2%;
+    width: 15rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: #5bb6ff;
+    border-left: none;
 }
 
 
@@ -132,6 +191,9 @@
     flex-direction: column;
     width: 100%;
 }
+.addTodo .mainAddTodo form .checkox {
+    display: none;
+}
 .addTodo .mainAddTodo form .point label{
     color: #222;
     font-family: Poppins;
@@ -183,4 +245,47 @@
         border: 2px solid black;
     }
 }
+
+// pagination part 
+ .paginations {
+    width: 100%;
+}
+.paginations .pagnitaonsss {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    list-style: none;
+}
+ .paginations .pagnitaonsss .page-items .page-link {
+    color: white;
+    text-decoration: none;
+    border: 0.2vw solid #c99200;
+    border-radius: 15px;
+    padding: 3% 28% 9% 28%;
+    font-size: 0.9rem;
+    background: #de483a;
+    font-family: monospace;
+    font-weight: 600;
+    &:hover{
+        color: #c99200;
+        border-color: #fff;
+        transition: 250ms ease-in-out;
+    }
+}
+ .paginations .pagnitaonsss .page-items .page-items {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #de483a;
+}
+
+.paginations .pagnitaonsss .active .page-items {
+    font-size: 1.2rem;
+    color: #de483a;
+    text-decoration: none;
+    transform: scale(1.5);
+    font-weight: bold;
+}
+
+
+
 

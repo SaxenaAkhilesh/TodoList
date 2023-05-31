@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 
 const AddTodoList = ({ addList, id ,setList}: any) => {
-  // const [id, setId] = useState(null)
-  // console.log(id);
-
   const [data, setdata] = useState({
-    title: "", content: ""
+    title: "", content: "",complete:"false"
   })
+  console.log(data);
+  
 
   const changeHandler = (e: any) => {
     var name = e.target.name;
@@ -18,7 +17,7 @@ const AddTodoList = ({ addList, id ,setList}: any) => {
 
   const sumbitData = async (e: any) => {
     e.preventDefault();
-    const { title, content } = data;
+    const { title, content,complete } = data;
     if (!title || !content) {
       alert("plz all input")
     } else {
@@ -28,11 +27,16 @@ const AddTodoList = ({ addList, id ,setList}: any) => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          title, content, id
+          title, content, id,complete
         })
       })
       const response=await res.json()
-      setList(response.ResponseUpdate.list); 
+      if(response.status===201){
+        setList(response.ResponseUpdate.list); 
+        setdata({title: "", content: "",complete:""})
+      }else{
+        alert("something went wrong")
+      }
     }
   }
 
@@ -64,6 +68,9 @@ const AddTodoList = ({ addList, id ,setList}: any) => {
           <div className="point">
             <label >Enter Your Content</label>
             <textarea name="content" id="textarea" cols={30} rows={7} value={data.content} onChange={(e) => { changeHandler(e) }} />
+          </div>
+          <div className="checkox">
+            <input type="checkbox" name="complete" id="complete"  value={data.complete} onChange={(e) => { changeHandler(e) }} disabled/>
           </div>
           <button onClick={(e) => { sumbitData(e) }}>Add</button>
         </form>

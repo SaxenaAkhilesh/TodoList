@@ -30,7 +30,7 @@ const Login = ({ setList}: any) => {
   const loginData = async (e: any) => {
     e.preventDefault();
     const { username, password } = user;
-    var passw=  "(?=.*[a-z])(?=.*[A-Z]).{0,}";
+    var passw=  "(?=.*[a-z])(?=.*[A-Z]).{6,}";
     if (!username || !password) { (toast.warn(`Plz Fill All Input 😂`, { position: 'top-center' })) }
     else if (!password.match(passw)) { toast.error(`Plz fill Password is 1 Uppercase,1 Lowercase And Minimum lenght 6 characters🧐`, { position: 'top-center' }) }
     else {
@@ -130,7 +130,7 @@ const Login = ({ setList}: any) => {
             <input type={!show ? "password" : "text"} name="password" id="password" value={user.password} onChange={handleChange} placeholder='Enter Your Password' autoComplete="off" />
             <div className="hide" onClick={() => setShow(!show)}>{!show ? <AiFillEye /> : <AiTwotoneEyeInvisible />}</div>
           </div>
-          <div className="forgotton" onClick={() => { navigate("/forget") }}>forget password</div>
+          {/* <div className="forgotton" onClick={() => { navigate("/forget") }}>forget password</div> */}
           <button className='button' onClick={loginData}>Login</button>
           {/* <div className="button" onClick={handleGoogleSignin} ><AiOutlineGooglePlus /></div> */}
           <div className="buttons">Don't have an account yet? <span onClick={() => { navigate("/signup") }}>Signup</span></div>

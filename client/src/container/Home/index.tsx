@@ -8,6 +8,32 @@ const Home = () => {
   const [toggle, setToggle] = useState(false);
   const [id, setId] = useState()
   const [list, setList] = useState([])
+  const [currentPages, setCurrentPages] = useState(1);
+
+  // pagination 
+  const recordPages = 5;
+  const lastIndex = currentPages * recordPages
+  const firstIndex = lastIndex - recordPages
+  const records = list.slice(firstIndex, lastIndex)
+  const nPages = Math.ceil(list.length / recordPages)
+  const numbers = [...Array(nPages + 1).keys()].slice(1)
+
+  function prePage() {
+    if (currentPages !== 1) {
+      setCurrentPages(currentPages - 1)
+    }
+  }
+
+  function changeCPages(id: any) {
+    setCurrentPages(id)
+  }
+
+  function nextPage() {
+    if (currentPages !== nPages) {
+      setCurrentPages(currentPages + 1)
+    }
+  }
+
 
   // add list 
   const addList = () => {
@@ -41,6 +67,8 @@ const Home = () => {
     // eslint-disable-next-line
     userisValid();
   }, [])
+
+
   return (
     <>
       <div className="homePage">
@@ -51,13 +79,21 @@ const Home = () => {
           </div>
         </div>
         <div className="bottomSection">
+          <div className="header">
+            <div className="point">
+              <div className="point_titles">Title</div>
+              <div className="point_contents">Description</div>
+            </div>
+          </div>
           <div className="containers">
             {react.Children.toArray(
-              list.map((elem: any) => {
+              records.map((elem: any) => {
                 return (
                   <div className="point">
                     <div className="point__title">{elem.title}</div>
                     <div className="point__content">{elem.content}</div>
+                    <div className="data">{elem.complete}</div>
+                    <div className="postion"><input type="checkbox" name="checkbox" id="checkbox" value={elem.complete} />{elem.complete}</div>
                   </div>
                 )
               })
@@ -65,6 +101,26 @@ const Home = () => {
 
             }
           </div>
+        </div>
+        <div className="paginations">
+          <ul className="pagnitaonsss">
+            <li className="page-items">
+              <a href='##' className='page-link' onClick={prePage}>Prev</a>
+            </li>
+            {react.Children.toArray(
+              numbers.map((n, i) => {
+                return (
+                  <li className={`page-items ${currentPages === n ? `active` : ""}`} key={i}>
+                    <a href='##' className='page-items' onClick={() => changeCPages(n)}>{n}</a>
+                  </li>
+                )
+              })
+            )
+            }
+            <li className="page-items">
+              <a href='##' className='page-link' onClick={nextPage}>Next</a>
+            </li>
+          </ul>
         </div>
       </div>
       {toggle ? <AddTodoList addList={addList} id={id} setList={setList} /> : ""}

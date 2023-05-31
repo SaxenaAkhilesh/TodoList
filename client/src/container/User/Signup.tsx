@@ -28,7 +28,7 @@ const Signup = ({ mastData }: any) => {
   const addDataUser = async (e: any) => {
     e.preventDefault();
     const { name, email,username, password, cpassword } = data;
-    var passw=  "(?=.*[a-z])(?=.*[A-Z]).{0,}";
+    var passw=  "(?=.*[a-z])(?=.*[A-Z]).{6,}";
     if (!name || !email || !username || !password || !cpassword) { toast.warn(`Plz Fill All Input 😂`, { position: 'top-center' }) }
     else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.email)) { alert("plz fill invalid email") }
     else if (!password.match(passw)){ toast.warn(`Plz fill Password and Confirm Password is 1 Uppercase,1 Lowercase And Minimum lenght 6 characters`) }

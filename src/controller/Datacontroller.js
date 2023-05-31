@@ -3,13 +3,15 @@ import userDb from "../model/signUpSchema.js";
 
 
 export const DataAdd = async (req, res) => {
-    const { title, content, id } = req.body;
+    const { title, content, id,complete } = req.body;
+    console.log(title, content, id,complete);
     try {
         const ResponseUpdate = await userDb.findOneAndUpdate({ _id: id }, {
             $push: {
                 list: {
                     title: title,
-                    content: content
+                    content: content,
+                    complete:complete
                 }
             }
         }, { new: true }
